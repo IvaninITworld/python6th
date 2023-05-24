@@ -1,2 +1,2 @@
-# Python6th
+# python6th
 python study
