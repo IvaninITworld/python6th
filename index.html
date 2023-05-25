@@ -1,111 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <title>My First Webpage</title>
-        <meta charset="UTF-8">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 실습</title>
+    <link rel="stylesheet" href="default.css">
+</head>
     <body>
-        <h1>Headings</h1>
-        <h1>Welcome (h1)</h1>
-        <h2>Welcome (h2)</h2>
-        <h3>Welcome (h3)</h3>
-        <h4>Welcome (h4)</h4>
-        <h5>Welcome (h5)</h5>
-        <h6>Welcome (h6)</h6>
-        <br>
-        <h1>Paragraph</h1>
-        <p>This is a paragraph</p>
-        <p>This is another <strong>paragraph</strong> of <i>text</i></p>
-        <br>
-        <h1>Links</h1>
-        <a href="https://google.com">Link to Google</a>
-        <br>
-        <a href="https://google.com" target="_blank">Link to Google(New window)</a>
-        <br>
-        <h1>Images</h1>
-        <img alt="가로 200px 세로 300px 의 이미지입니다." src="https://picsum.photos/200/300">
-        <br>
-        <h1>Lists</h1>
-        <ul>
-            <li>List Item</li>
-            <li>List Item</li>
-            <li><a href="https://google.com" target="_blank">Google</a></li>
-            <li><a href="https://naver.com" target="_blank">Naver</a></li>
-            <li>
-                <ul>
-                    <li>List Item</li>
-                    <li>List Item</li>
-                    <li>리스트 아이템</li>
-                </ul>
-            </li>
-        </ul>
-        <br>
-        <ol>
-            <li>Ordered List Item</li>
-            <li>Ordered List Item</li>
-            <li>Ordered List Item</li>
-        </ol>
-        <br>
-        <h1>Tables</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>민혁</td>
-                    <td>김</td>
-                    <td>ivankimmh@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>길동</td>
-                    <td>홍</td>
-                    <td>hong@gmail.com</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <h1 id="h1">Registration Form</h1>
-        <form>
-            <fieldset>
-                <legend>Account</legend>
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-                <br>
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email">
-                <br>
-                <label for="pw">Password</label>
-                <input type="password" id="pw" name="pw">
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend>User Info</legend>
-                <label for="location">Location</label>
-                <select id="location" name="location">
-                    <option value="MA">MA</option>
-                    <option value="NY">NY</option>
-                    <option value="CA">CA</option>
-                </select>
-                <br>
-                <h3>Gender</h3>
-                <label for="gender1">Male</label>
-                <input type="radio" id="gender1" name="gender" value="Male">
-                <label for="gender2">Female</label>
-                <input type="radio" id="gender2" name="gender" value="Female">
-                <br>
-                <h3>Gender2</h3>
-                <label for="gender11">Male</label>
-                <input type="checkbox" id="gender11" name="gender" value="Male">
-                <label for="gender22">Female</label>
-                <input type="checkbox" id="gender22" name="gender" value="Female">
-                <br>
-            </fieldset>
-            <input type="submit" value="Submit">
-        </form>
+        <div id="container">
+            <div class="left-side">
+                <h1>환영합니다</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <span class="highlight">강조된 텍스트입니다.</span> Nulla a mollis
+                    lectus.
+                </p>
+            </div>
+            <div class="right-side">
+                <h1>안녕하세요</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <span class="highlight">강조된 텍스트입니다.</span> Nulla a mollis
+                    lectus.
+                </p>
+            </div>
+        </div>
     </body>
 </html>
