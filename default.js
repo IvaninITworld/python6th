@@ -209,18 +209,55 @@
 //   console.log("같은 수");
 // }
 
-var letter = prompt("Enter a letter : ");
+// var letter = prompt("Enter a letter : ");
 
-letter = letter.toLowerCase();
+// letter = letter.toLowerCase();
 
-if (
-  letter == "a" ||
-  letter == "e" ||
-  letter == "i" ||
-  letter == "o" ||
-  letter == "u"
-) {
-  console.log("Vowel");
-} else {
-  console.log("Consonant");
+// if (
+//   letter == "a" ||
+//   letter == "e" ||
+//   letter == "i" ||
+//   letter == "o" ||
+//   letter == "u"
+// ) {
+//   console.log("Vowel");
+// } else {
+//   console.log("Consonant");
+// }
+
+var digit = parseInt(prompt("숫자 입력 : "));
+
+switch (digit) {
+  case 0:
+    document.write("Zero");
+    break;
+  case 1:
+    document.write("Zero");
+    break;
+  case 2:
+    document.write("Zero");
+    break;
+  case 3:
+    document.write("Zero");
+    break;
+  case 4:
+    document.write("Zero");
+    break;
+  case 5:
+    document.write("Zero");
+    break;
+  case 6:
+    document.write("Zero");
+    break;
+  case 7:
+    document.write("Zero");
+    break;
+  case 8:
+    document.write("Zero");
+    break;
+  case 9:
+    document.write("Zero");
+    break;
+  default:
+    document.write("Not a digit");
 }
