@@ -4,82 +4,108 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>부트스트랩 실습</title>
+    <title>My note</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <style>
+      .container {
+        width: 800px;
+        padding: 10px;
+        border: 1px;
+        text-align: center;
+        border-radius: 10px;
+        background-color: rgb(242, 242, 242);
+      }
+
+      /* #note {
+        width: 400px;
+        height: 200px;
+        bottom: 0;
+        border: 2px solid;
+      } */
+
+      #todoForm {
+        margin: 10px;
+        border-bottom: 1px solid rgba(144, 142, 142, 0.3);
+      }
+
+      #toDoInput {
+        font-size: 16px;
+        padding: 5px 5px 5px 2px;
+        display: block;
+        width: 300px;
+        border: none;
+        border-bottom: 1px solid rgba(144, 142, 142, 0.3);
+        background-color: rgb(242, 242, 242);
+      }
+
+      #toDoInput:focus {
+        outline: none;
+      }
+
+      #todoBox {
+        margin: 10px;
+        border: 2px;
+        border-radius: 10px;
+      }
+
+      #todoList {
+        display: inline-block;
+        list-style: none;
+        text-align: center;
+      }
+
+      .toDoListItem {
+        display: flex;
+        width: 300px;
+        padding: 5px;
+        margin: 5px;
+        border: 1px;
+        justify-content: space-between;
+      }
+
+      .toDoListSpan {
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
-    <!-- Pagination -->
-    <div class="container mt-4">
-      <nav>
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item"><a class="page-link" href="#">6</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <!-- Breadcrumbs -->
-    <div class="container mt-4">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Library</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-      </nav>
-    </div>
-
-    <!-- Progress bars -->
-    <div class="container mt-4">
-      <div class="progress">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="width: 25%"
-          aria-valuenow="25"
-          aria-valuemin="0"
-          aria-valuemax="100"
+    <header>
+      <h1>My note</h1>
+    </header>
+    <main>
+      <section class="container">
+        <!-- <div id="note" contenteditable="true" oninput="saveNote()"></div>
+        <button
+          type="button"
+          class="btn btn-danger"
+          onclick="clearNote()"
+          style="margin: 10px 0 10px 0"
         >
-          25%
+          Clear
+        </button> -->
+
+        <form id="todoForm">
+          <input
+            id="toDoInput"
+            type="text"
+            placeholder="what to do?"
+            required
+          />
+        </form>
+
+        <div id="todoBox">
+          <ul id="todoList"></ul>
         </div>
-      </div>
-    </div>
-
-    <!-- Spinners -->
-    <div class="container mt-4">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-
-    <!-- Toasts -->
-    <div class="container mt-4">
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="me-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="toast-body">Hello, world! This is a toast message.</div>
-      </div>
-    </div>
-
+      </section>
+    </main>
+    <footer style="position: fixed; bottom: 0">
+      <div style="margin: 0 auto">Copyright 2023 MyNote.</div>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -94,18 +120,89 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- <script>
+      function getNote() {
+        var note = localStorage.getItem("note");
+        console.log("getNote : ", note);
+        document.getElementById("note").innerHTML = note;
+      }
+      function saveNote() {
+        var note = document.getElementById("note").innerHTML;
+        console.log("setNote : ", note);
+        localStorage.setItem("note", note);
+      }
+      function clearNote() {
+        localStorage.clear();
+        console.log("clear note");
+        localStorage.clear();
+        document.getElementById("note").innerHTML = "";
+      }
+
+      getNote();
+    </script> -->
+
     <script>
-      // Initialize toast
-      var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-      var toastList = toastElList.map(function (toastEl) {
-        return new bootstrap.Toast(toastEl);
-      });
-      // Show toast
-      setTimeout(function () {
-        toastList.forEach(function (toast) {
-          toast.show();
-        });
-      }, 1000);
+      const toDoForm = document.getElementById("todoForm");
+      const toDoInput = document.querySelector("#todoForm input");
+      const toDoList = document.getElementById("todoList");
+
+      const TODOS_KEY = "todos";
+
+      let toDos = [];
+
+      function saveToDos() {
+        localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
+      }
+
+      function deleteToDo(e) {
+        const li = e.target.parentElement;
+        li.remove();
+        toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+        saveToDos();
+      }
+
+      function paintToDo(newTodo) {
+        const li = document.createElement("li");
+        li.id = newTodo.id;
+        li.setAttribute("class", "toDoListItem");
+
+        const span = document.createElement("span");
+        span.innerText = newTodo.text;
+        span.setAttribute("class", "toDoListSpan");
+
+        const button = document.createElement("button");
+        button.innerText = "delete";
+        button.setAttribute("class", "btn btn-danger");
+        button.addEventListener("click", deleteToDo);
+
+        li.appendChild(span);
+        li.appendChild(button);
+        toDoList.appendChild(li);
+      }
+
+      function handleToDoSubmit(e) {
+        e.preventDefault();
+        const newTodo = toDoInput.value;
+        toDoInput.value = "";
+        const newTodoObj = {
+          text: newTodo,
+          id: Date.now(),
+        };
+
+        toDos.push(newTodoObj);
+        paintToDo(newTodoObj);
+        saveToDos();
+      }
+
+      toDoForm.addEventListener("submit", handleToDoSubmit);
+
+      const savedToDos = localStorage.getItem(TODOS_KEY);
+
+      if (savedToDos !== null) {
+        const parsedToDos = JSON.parse(savedToDos);
+        toDos = parsedToDos;
+        parsedToDos.forEach(paintToDo);
+      }
     </script>
   </body>
 </html>
