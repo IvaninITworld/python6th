@@ -5,3 +5,4 @@ idea
 .vscode
 /vscode
 /.vscode
+.pre-commit-config.yaml
