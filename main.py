@@ -50,7 +50,7 @@ print("나머지", total)
 print("나머지 타입", type(total))
 
 # 거듭제곱
-total = a ** b
+total = a**b
 print("거듭제곱", total)
 print("거듭제곱 타입", type(total))
 
@@ -100,7 +100,7 @@ m = 15
 y = a + b
 print(y)
 
-m += 10 # m = m +10
+m += 10  # m = m +10
 print(m)
 
 m **= 2
@@ -115,3 +115,18 @@ b = 15
 
 print("a: ", bin(a))
 print("b: ", bin(b))
+
+
+# 명시적 타입 변환
+n1 = 10.99
+vn1 = int(n1)
+
+print(vn1, type((vn1)))
+
+
+# 자료형
+data = [10, 20, -50, 21.3, "likeLion"]
+print(data)
+
+for i in data:
+    print(type(i))
