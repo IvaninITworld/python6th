@@ -308,3 +308,94 @@
 #     pass
 # else:
 #     print("6 보다 큼")
+
+# 배열 생성 및 원소 접근
+import array
+
+# from array import *
+
+stu_roll = array.array("i", [101, 102, 103, 104, 105])
+print(stu_roll[0])
+print(stu_roll[1])
+print(stu_roll[2])
+print(stu_roll[3])
+print(stu_roll[4])
+
+print("for in 사용")
+for element in stu_roll:
+    print(element)
+
+print("인덱스를 이용한 순회")
+n = len(stu_roll)
+for i in range(n):
+    print(i, "=", stu_roll[i])
+
+print("인덱스를 사용한 while 루프 배열 순회")
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+
+# 배열 삽입
+stu_roll = array.array("i", [101, 102, 103, 104, 105])
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+# 배열 insert()
+print("Array After Insert")
+stu_roll.insert(1, 106)
+stu_roll.insert(3, 107)
+
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+# 배열 remove()
+print("Array After remove")
+stu_roll.remove(101)
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+# 배열 pop()
+print("Array After pop()")
+stu_roll.pop()
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+# 배열 메소드
+print("Array index()")
+stu_roll = array.array("i", [101, 102, 103, 104, 105])
+print(stu_roll.index(101))
+
+# 배열 extend()
+print("Array extend()")
+arr = array.array("i", [201, 208, 209])
+stu_roll.extend(arr)
+
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+# 배열 reverse()
+print("Array reverse()")
+stu_roll.reverse()
+
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
