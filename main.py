@@ -309,93 +309,229 @@
 # else:
 #     print("6 보다 큼")
 
-# 배열 생성 및 원소 접근
-import array
+# # 배열 생성 및 원소 접근
+# import array
 
-# from array import *
+# # from array import *
 
-stu_roll = array.array("i", [101, 102, 103, 104, 105])
-print(stu_roll[0])
-print(stu_roll[1])
-print(stu_roll[2])
-print(stu_roll[3])
-print(stu_roll[4])
+# stu_roll = array.array("i", [101, 102, 103, 104, 105])
+# print(stu_roll[0])
+# print(stu_roll[1])
+# print(stu_roll[2])
+# print(stu_roll[3])
+# print(stu_roll[4])
 
-print("for in 사용")
-for element in stu_roll:
-    print(element)
+# print("for in 사용")
+# for element in stu_roll:
+#     print(element)
 
-print("인덱스를 이용한 순회")
+# print("인덱스를 이용한 순회")
+# n = len(stu_roll)
+# for i in range(n):
+#     print(i, "=", stu_roll[i])
+
+# print("인덱스를 사용한 while 루프 배열 순회")
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+
+# # 배열 삽입
+# stu_roll = array.array("i", [101, 102, 103, 104, 105])
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+# # 배열 insert()
+# print("Array After Insert")
+# stu_roll.insert(1, 106)
+# stu_roll.insert(3, 107)
+
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+# # 배열 remove()
+# print("Array After remove")
+# stu_roll.remove(101)
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+# # 배열 pop()
+# print("Array After pop()")
+# stu_roll.pop()
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+# # 배열 메소드
+# print("Array index()")
+# stu_roll = array.array("i", [101, 102, 103, 104, 105])
+# print(stu_roll.index(101))
+
+# # 배열 extend()
+# print("Array extend()")
+# arr = array.array("i", [201, 208, 209])
+# stu_roll.extend(arr)
+
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+# # 배열 reverse()
+# print("Array reverse()")
+# stu_roll.reverse()
+
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+# 4교시
+from array import array
+
+# import array
+
+stu_roll = array("i", [101, 102, 103, 104, 105, 106, 107])
+
+# 배열 슬라이싱
+print("Array slice()")
+print(stu_roll[1:5])
+# array('i', [102, 103, 104, 105])
+print(stu_roll[0:])
+# array('i', [101, 102, 103, 104, 105, 106, 107])
+
 n = len(stu_roll)
 for i in range(n):
     print(i, "=", stu_roll[i])
 
-print("인덱스를 사용한 while 루프 배열 순회")
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
+print("인덱스 1 부터 5까지(인덱스 5 포함x)")
+a = stu_roll[1:5]
+for i in a:
+    print(i)
+
+print("인덱스 0 부터 끝까지")
+b = stu_roll[0:]
+for i in b:
+    print(i)
+
+print("인덱스 처음부터 5까지(인덱스 5 포함x)")
+c = stu_roll[:5]
+for i in c:
+    print(i)
+
+print("인덱스 마지막 4개")
+d = stu_roll[-4:]
+for i in d:
+    print(i)
+
+print("인덱스 0부터 6번째 까지(인덱스 6 포함 x) 2개씩 건너뛰어")
+e = stu_roll[0:6:2]
+for i in e:
+    print(i)
+
+print("인덱스 마지막 인덱스로 부터 5개 요소 중 맨앞 2개의 요소[-5-(-3)=-2]를 출력")
+f = stu_roll[-5:-3]
+for i in f:
+    print(i)
+
+# 문자열
+str1 = "LikeLion"
+str2 = "LikeLion"
+str3 = """
+동해물과 백두산이
+마르고 닳도록
+하느님이 보우하사
+우리나라 만세
+"""
+
+print(str1)
+print(str2)
+print(str3)
+
+str4 = 'Hello "LikeLion" How are you?'
+str5 = "Hello 'LikeLion' How are you?"
+
+print(str4)
+# Hello "LikeLion" How are you?
+print(str5)
+# Hello 'LikeLion' How are you?
+
+str6 = "Hello \n How are you?"
+str7 = "Hello \\ How are you?"
+str8 = r"Hello \n How are you?"
+
+print(str6)  # 줄바꿈
+# Hello
+# How are you?
+print(str7)
+# Hello \ How are you?
+print(str8)  # escape 문자 생략해버리는
+# Hello \n How are you?
+print(type(str8))
+
+str9 = "Hello \\ How are \t you?"
+
+print(str9)  # tab 삽입
+# Hello \ How are          you?
+
+# 메모리 할당
+# 파이썬에서 문자열은 객체로 취급
+# 문자열은 불변 객체로 생성된 후에는 변경할 수 없다.
+# 파이썬에서 변수는 모두 참조값을 가지고 있다.
+# 가변 객체(Mutable Object), 불변 객체(Immutable Object)
 
 
-# 배열 삽입
-stu_roll = array.array("i", [101, 102, 103, 104, 105])
-n = len(stu_roll)
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
+def greet(name, msg):
+    print(name, msg)
 
-# 배열 insert()
-print("Array After Insert")
-stu_roll.insert(1, 106)
-stu_roll.insert(3, 107)
 
-n = len(stu_roll)
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
+greet(name="철수", msg="안녕하세요!")
+greet(msg="안녕하세요!", name="철수")
 
-# 배열 remove()
-print("Array After remove")
-stu_roll.remove(101)
-n = len(stu_roll)
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
 
-# 배열 pop()
-print("Array After pop()")
-stu_roll.pop()
-n = len(stu_roll)
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
+def display_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
 
-# 배열 메소드
-print("Array index()")
-stu_roll = array.array("i", [101, 102, 103, 104, 105])
-print(stu_roll.index(101))
 
-# 배열 extend()
-print("Array extend()")
-arr = array.array("i", [201, 208, 209])
-stu_roll.extend(arr)
+display_info(name="철수", age=25, city="서울")
 
-n = len(stu_roll)
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
 
-# 배열 reverse()
-print("Array reverse()")
-stu_roll.reverse()
+# 인자가 없는 함수
+print("인자가 없는 함수")
 
-n = len(stu_roll)
-i = 0
-while i < n:
-    print(stu_roll[i])
-    i += 1
+
+def disp():
+    name = "멋쟁이사자"
+    print("Welcome to", name)
+
+
+print("함수 실행")
+disp()
+
+
+def add(y):
+    x = 10.2334
+    print(x + y)
+    print(f"Formattered Output{x + y:.2f}")
+    print(f"Formattered Output{x + y:10.2f}")  # 전체 출력의 폭을 지정
+    # Formattered Output     30.23
+    print(f"Formattered Output{x + y:6.2f}")  # 전체 출력의 폭을 지정
+    # Formattered Output 30.23
+
+
+add(20)
