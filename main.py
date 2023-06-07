@@ -130,3 +130,63 @@ print(data)
 
 for i in data:
     print(type(i))
+
+
+# 예제 1: 간단한 if 문
+x = 5
+if x > 3:
+    print("x는 3보다 크다.")
+
+# 예제 2: if else
+age = 18
+if age >= 18:
+    print("성인입니다.")
+else:
+    print("미성년입니다.")
+
+
+# 예제 3: 중첩된 if else
+score = 85
+if score <= 90:
+    print("Class A")
+else:
+    if score >= 80:
+        print("Class B")
+    else:
+        if score >= 70:
+            print("Class C")
+        else:
+            print("Class D")
+
+# 예제 4: if elif
+marks = 75
+if marks >= 90:
+    print("A")
+elif marks >= 80:
+    print("B")
+elif marks >= 70:
+    print("C")
+elif marks >= 60:
+    print("D")
+else:
+    print("F")
+
+
+# 예제 5: 입력받아 if else 로 처리하기
+a = int(input("Enter Number Greater then or equal to 2: "))
+if a >= 2:
+    print("Correct!! You have Entered: ", a)
+else:
+    print("Wrong!! you have entered: ", a)
+
+
+# 예제 6: 입력받아 if elif 문으로 처리하기
+day = input("요일을 입력하세요 : ")
+if day == "Mon":
+    print("월요일")
+elif day == "Tue":
+    print("화요일")
+elif day == "Wed":
+    print("수요일")
+else:
+    print("휴일")
