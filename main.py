@@ -1141,3 +1141,355 @@
 # # 멋쟁이사자2
 # print(stu)
 # # {101: 'Kim', 102: 'Bae', 103: 'Hong'}
+
+
+# class Mobile:
+#     fp = 'yes'
+#
+#
+# realme = Mobile()  # 생성자 함수: 클래스를 메모리공간에 띄워주고 앞 변수가 클래스의 기능을 가져다 쓸 수 있게 한다.
+# redme = Mobile()
+# geek = Mobile()
+#
+# print(Mobile.fp)
+# print(realme.fp)
+# print(redme.fp)
+# print(geek.fp)
+# # yes
+# # yes
+# # yes
+# # yes
+#
+# Mobile.fp = 'no'  # 클래스 네임스페이스에 있는 변수를 변경하면 이미 클래스를 전달받은 모든 내용에도 영향을 준다.
+#
+# print(Mobile.fp)
+# print(realme.fp)
+# print(redme.fp)
+# print(geek.fp)
+# # no
+# # no
+# # no
+# # no
+#
+# realme.fp = 'realme?'  # 인스턴스 네임스페이스에 있는 변수를 변경하면 범위가 고정되어 변경된다.
+#
+# print(Mobile.fp)
+# print(realme.fp)
+# print(redme.fp)
+# print(geek.fp)
+# # no
+# # realme?
+# # no
+# # no
+
+# # 자식 클래스 선언
+# class ChildClassName (ParentClassName):
+#     members of Child class
+
+
+
+
+# 메소드 오버로딩 : 수평적 확장 - 추가적재, 같은 메서드에 변수를 더 태움 (매개변수의 개수를 더 태움)
+# 메소드 오버라이딩 : 수직적 확장 - 상속받은 메서드를 재정의 (상속받은 부동산이 카페였는데 자식이 키즈카페로 변경)
+
+# class Complex:
+#     def __int__(self, real, imag):
+#         self.real = real
+#         self.imag = imag
+#
+#     def __add__(self, other):
+#         return Complex(self.real + other.real, self.imag + other.imag)
+#
+#     def __str__(self):
+#         return f'{self.real} + {self.imag}i'
+#
+# c1 = Complex(1, 2)
+# c2 = Complex(3, 4)
+# c3 = c1 + c2
+# print(c3)
+
+# class Vector(object):
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __add__(self, other): # 연산자 오버로딩
+#         return Vector(self.x + other.x, self.y + other.y)
+#
+#     def __str__(self): # 연산자 오버라이딩
+#         return f'Vector({self.x}, {self.y})'
+#
+# a = Vector(1, 2)
+# b = Vector(3, 4)
+#
+# print(a)
+# print(b)
+# # 기본 출력값
+# # <__main__.Vector object at 0x000001E6CBB051E0>
+# # <__main__.Vector object at 0x000001E6CBB062C0>
+#
+# # 연산자 오버로딩 후
+# # <__main__.Vector object at 0x000002E02D2F51E0>
+# # <__main__.Vector object at 0x000002E02D2F6290>
+#
+# # 연산자 오버라이딩 후
+# # Vector(1, 2)
+# # Vector(3, 4)
+#
+# c = a + b
+# print(c)
+# # 기본 출력값
+# # TypeError: unsupported operand type(s) for +: 'Vector' and 'Vector'
+#
+# # 연산자 오버로딩 후
+# # <__main__.Vector object at 0x000002E02D2F6230>
+#
+# # 연산자 오버라이딩 후
+# # Vector(4, 6)
+
+# # 시간 관련
+# import time
+# current_time = time.time()
+# print(current_time)
+# # epoch
+# # 1686274486.4857082
+# print(type(current_time))
+# # <class 'float'>
+#
+# current_time = time.ctime()
+# print(current_time)
+# # 현재 날짜와 시간
+# # Fri Jun  9 10:34:46 2023
+# print(type(current_time))
+# # <class 'str'>
+#
+# from datetime import datetime
+# dt = datetime(year=2023, month=5, day=5, hour=10, minute=30)
+# print(dt)
+# # 2023-05-05 10:30:00
+# print(type(dt))
+# # <class 'datetime.datetime'>
+#
+# # datetime - now()
+# current_datetime = datetime.now()
+# print(current_datetime)
+# print(type(current_datetime))
+# # 2023-06-09 10:40:12.478820
+# # <class 'datetime.datetime'>
+#
+# # date 클래스
+# # date 객체 생성
+# from datetime import date
+# d = date(year=2023, month=5, day=5)
+# print(d)
+# print(type(d))
+# # 2023-05-05
+# # <class 'datetime.date'>
+#
+# # date - today()
+# current_date = date.today()
+# print(current_date)
+# print(type(current_date))
+# # 2023-06-09
+# # <class 'datetime.date'>
+#
+# # time 클래스
+# # time 객체 생성
+# from datetime import time
+# t = time(hour=10, minute=30, second=15)
+# print(t)
+# print(type(t))
+# # 10:30:15
+# # <class 'datetime.time'>
+#
+# # timedelta 클래스
+# # 두 날짜 사이의 차이 기간
+# from datetime import timedelta
+# td = timedelta(days=10)
+# print(td)
+# print(type(td))
+# # 10 days, 0:00:00
+# # <class 'datetime.timedelta'>
+#
+# # 두 날짜 비교하기
+# from datetime import date
+# d1 = date(year=2023, month=5, day=5)
+# d2 = date(year=2022, month=6, day=5)
+#
+# # 날짜의 연산자 오버로딩으로 비교 가능
+# print(d1 == d2)
+# print(d1 < d2)
+# print(d1 > d2)
+# # False
+# # False
+# # True
+
+# class ParentClass:
+#     def __init__(self):
+#         self.name = 'parent'
+#         self.number = 10
+#
+#     def __str__(self):
+#         return f'ParentClass name : {self.name}, number : {self.number}'
+#
+#     def add_num(self, new_number):
+#         print(f'부모: {new_number} 만큼 더해야지')
+#         self.number = self.number + new_number
+#
+# parent = ParentClass()
+# # print(parent)
+#
+#
+# # 기본값 출력
+# # <__main__.ParentClass object at 0x000001F5A7AA51E0>
+#
+# # 연산자 오버라이딩 후
+# # ParentClass name : parent, number : 10
+#
+# class ChildClass(ParentClass):  # 부모 클래스를 받아서 자식 클래스 생성
+#     def __init__(self):
+#         super().__init__()  # init 이후 super 메소드 -> 부모 클래스의 생성자 또는 메소드를 호출하는데 사용
+#         # 없으면 ? : IndentationError: expected an indented block after function definition
+#         self.name = 'child'
+#
+#     def __str__(self):
+#         return f'ChildClass name : {self.name}, number : {self.number}'
+#
+#     def add_num(self, new_number): # 메소드 오버라이딩
+#         print('말 안듣는 자식: 고정적으로 5 더할거임')
+#         self.number = self.number + 5
+#
+# parent = ParentClass()
+# child = ChildClass()
+#
+# # __init__ 이후 : ChildClass 의 name 을 변경
+# print(parent)
+# # ParentClass name : parent, number : 10
+# print(child)
+# # ParentClass name : child, number : 10
+#
+# # __str__ 이후 : 출력값의 내용 변경
+# print(parent)
+# # ParentClass name : parent, number : 10
+# print(child)
+# # ChildClass name : child, number : 10
+#
+# # ParentClass 에 add_num 추가 후
+# print('7일 더 하세요')
+# parent.add_num(7)
+# child.add_num(7)
+# # 부모: 7 만큼 더 해야지
+# # 부모: 7 만큼 더 해야지
+#
+# print(parent)
+# print(child)
+# # ParentClass name : parent, number : 17
+# # ChildClass name : child, number : 17
+#
+# # ChildClass 에 add_num 추가 후
+# print('7일 더 하세요')
+# parent.add_num(7)
+# child.add_num(7)
+# # 부모: 7 만큼 더 해야지
+# # 말 안듣는 자식: 고정적으로 5 더할 거임
+# # -> Child 에서 정의한 내용대로 출력
+#
+# print(parent)
+# print(child)
+# # ParentClass name : parent, number : 17
+# # ChildClass name : child, number : 15
+
+# # file 오브젝트
+# # 읽기 전용으로 가져오기
+# file_object = open('example.txt', 'r')
+#
+# content = file_object.read()
+#
+# print(content)
+# # Hello, World!
+# file_object.close()
+#
+# # 쓰기
+# file_object = open('example.txt', 'w')
+#
+# content = "This is a new file \nPython is fun!"
+# # Hello, World! -> This is a new file \nPython is fun!
+#
+# file_object.write(content)
+#
+# file_object.close()
+
+# # with 문을 사용해서 파일 관리
+# # 읽기
+# with open('example.txt', 'r') as file_object:
+#      content = file_object.read()
+#      print(content)
+
+# # 덮어 쓰기
+# with open('example.txt', 'w') as file_object:
+#     content = """This is a mutiline string.
+# Python is a versatile language.
+# It is easy to learn and use."""
+#     print(content)
+#     file_object.write(content)
+# # This is a mutiline string.
+# # Python is a versatile language.
+# # It is easy to learn and use.
+#
+#
+# # 파일의 모든 줄을 읽고 출력
+# with open('example.txt', 'r') as file_object:
+#     lines = file_object.readlines()
+#     for line in lines:
+#         print('>', line.strip())
+# # > This is a mutiline string.
+# # > Python is a versatile language.
+# # > It is easy to learn and use.
+
+# # 파일 존재 확인하기 : os.path 사용
+# import os
+# filename = 'example.txt'
+#
+# print("파일이 존재하는지 확인하기")
+# if os.path.isfile(filename):
+#     print(f'P{filename}이 존재합니다.')
+# else:
+#     print(f'{filename}이 없습니다.')
+# # 파일이 존재하는지 확인하기
+# # Pexample.txt이 존재합니다.
+
+# # 텍스트 파일에 리스트 쓰기
+# file_object = open('list_example.txt', 'w')
+# content_list = ["Python", "Java", "C++", "Javascript"]
+#
+# for item in content_list:
+#     file_object.write(item + '\n')
+#
+# file_object.close()
+# # list_example.txt 파일을 생성하고 리스트 생성
+# # Python
+# # Java
+# # C++
+# # Javascript
+#
+# import os
+# current_directory = os.getcwd()
+# print(current_directory)
+# # C:\Users\xormr\workspace\python6th
+#
+# # os.mkdir('new_directory')
+# # os.makedirs('parent_directory/child_directory/grandchild_directory1/2/3/4')
+#
+# for dirpath, dirnames, filenames in os.walk('.'):
+#     print(f"디렉터리 경로: {dirpath}")
+#     print(f"디렉터리 이름: {dirnames}")
+#     print(f"파일 이름: {filenames}")
+#
+# # 디렉터리 경로: .
+# # 디렉터리 이름: ['.git', '.idea', '.vscode', 'Bootstrap', 'HTML-CSS', 'Javascript', 'ToDoList', 'venv']
+# # 파일 이름: ['.gitignore', 'classPractice.py', 'example.txt', 'inde
+# # x.js', 'list_example.txt', 'main.py', 'README.md', 'requirements.txt']
+# # 디렉터리 경로: .\.git
+# # 디렉터리 이름: ['hooks', 'info', 'logs', 'objects', 'refs']
+# # 파일 이름: ['COMMIT_EDITMSG', 'config', 'description', 'FETCH_HEAD', 'HEAD', 'index', 'ORIG_HEAD', 'packed-refs']
+# # ...
