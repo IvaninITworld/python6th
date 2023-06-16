@@ -385,60 +385,196 @@
 #         return list(strs_table.values())
 
 
-# Timsort() 알고리즘
-def insertion_sort(arr, start, end):
-    for i in range(start + 1, end + 1):
-        key_item = arr[i]
-        j = i - 1
-        while j >= start and arr[j] > key_item:
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key_item
+# # Timsort() 알고리즘
+# def insertion_sort(arr, start, end):
+#     for i in range(start + 1, end + 1):
+#         key_item = arr[i]
+#         j = i - 1
+#         while j >= start and arr[j] > key_item:
+#             arr[j + 1] = arr[j]
+#             j -= 1
+#         arr[j + 1] = key_item
+#
+#
+# def merge(arr, start, mid, end):
+#     if arr[mid - 1] <= arr[mid]:
+#         return
+#
+#     left = arr[start:mid]
+#     right = arr[mid:end]
+#
+#     k = start
+#     i = 0
+#     j - 0
+#
+#     while (start + i < mid and mid + j < end):
+#         if(left[i] <= right[j]):
+#             arr[k] = left[i]
+#             i += 1
+#         else:
+#             arr[k] = right[j]
+#             j += 1
+#         k += 1
+#
+#     if start + i < mid:
+#         arr[k:end] = left[i:]
+#     if mid + j < end:
+#         arr[k:end] = right[j:]
+#
+#
+# def timsort(arr):
+#     min_run = 32
+#     n = len(arr)
+#
+#     for i in range(0, n, min_run):
+#         insertion_sort(arr, i, min((i + min_run - 1), n - 1))
+#
+#     size = min_run
+#     while size < n:
+#         for start in range(0, n, size * 2):
+#             mid = start + size - 1
+#             end = min((start + size * 2 - 1), (n - 1))
+#             merge(arr, start, mid, end)
+#         size += 2
+#
+#     return arr
+#
+#
+# a = ['h', 'z', 's', 'y', 'b', 'c', 'd', 'e', 'f', 'g', ]
+# print(timsort(a))
 
 
-def merge(arr, start, mid, end):
-    if arr[mid - 1] <= arr[mid]:
-        return
+# # 스택 구현 - Last In First Out 방식
+# #연결리스트의 노드를 표현할 클래스 정의
+# class ListNode:
+#     def __init__(self, value):
+#         self.value = value
+#         self.next = None
+#
+# #스택을 표현할 클래스 정의
+# class Stack:
+#     def __init__(self):
+#         self.head = None
+#         self.size = 0
+#
+#     #스택이 비어있는지 확인하는 메서드
+#     def is_empty(self):
+#         return self.size == 0
+#
+#     #스택의 맨 위에 원소를 추가하는 메서드
+#     def push(self, value):
+#         new_node = ListNode(value)
+#         new_node.next = self.head
+#         self.head = new_node
+#         self.size += 1
+#
+#     #스택의 맨 위에서 원소를 꺼내는 메서드
+#     def pop(self):
+#         if self.is_empty():
+#             raise IndexError("pop from an empty stack")
+#         value = self.head.value
+#         self.head = self.head.next
+#         self.size -= 1
+#         return value
+#
+# stack = Stack()
+#
+# #스택에 원소추가
+# stack.push(1)
+# stack.push(3)
+# stack.push(2)
+# stack.push(4)
+# stack.push(5)
+#
+#
+# for _ in range(5):
+#     print(stack.pop()) #스택에서 원소 꺼냄
+#
+#
+# # Valid Parentheses (괄호로 된 입력값이 올바른지 판별)
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         stack = []
+#         mapping = {
+#             ')': '(',
+#             '}': '{',
+#             ']': '['
+#         }
+#
+#         for char in s:
+#             # 스택 마지막 요소 꺼내서 확인, 비어있으면 #반환
+#             if char in mapping:
+#                 top_element = stack.pop() if stack else '#'
+#
+#             else:
+#                 stack.append(char)
+#
+#         return not stack
+#
+# # Remove Duplicate Letters (중복 문자 제거)
+# class Solution:
+#     def removeDuplicateLetters(self, s: str) -> str:
+#         if not s:
+#             return ""
+#
+#         for char in sorted(set(s)):
+#             suffix = s[s.index(char):]
+#             if set(s) == set(suffix):
+#                 return char + self.removeDuplicateLetters(suffix.replace(char, ""))
+#                 return ""
+#
+# # 2
+# class Solution2:
+#     def removeDuplicateLetters(self, s: str) -> str:
+#         if not s:
+#             return ""
+#
+#         #문자열의 문자 빈도수 계산
+#         counter = {char: 0 for char in set(s)}
+#         for char in s:
+#              counter[char] += 1
+#
+#         # 사전순으로 가장 작은 문자의 인덱스 찾기
+#         min_idx = 0
+#         for i, char in enumerate(s):
+#             if char < s[min_idx]:
+#                 min_idx = i
+#             counter[char] -= 1
+#             if counter[char] == 0:
+#                 break
+#         return s[min_idx] + self.removeDuplicateLetters(s[min_idx + 1:].replace(s[min_idx], ""))
+#
+# # 3
+# class Solution3:
+#     def removeDuplicateLetters(self, s: str) -> str:
+#         last_occurrence = {c: i for i, c in enumerate(s)}
+#         stack = []
+#         in_stack = set()
+#
+#         for i, c in enumerate(s):
+#             if c not in in_stack:
+#                 while stack and c < stack[-i] and i < last_occurrence[stack[-1]]:
+#                     in_stack.remove(stack.pop())
+#                 stack.append(c)
+#                 in_stack.add(c)
+#
+#         return ''.join()
+#
+#
+# # Daily Temperatures (일일 온도)
+# class Solution:
+#     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+#         answer = [0] * len(temperatures)
+#         stack = []
+#
+#         for i, cur in enumerate(temperatures):
+#             while stack and cur > temperatures[stack[-1]]:
+#                 last = stack.pop()
+#                 answer[last] = i - last
+#             stack.append(i)
+#
+#         return answer
 
-    left = arr[start:mid]
-    right = arr[mid:end]
+import requests
 
-    k = start
-    i = 0
-    j - 0
-
-    while (start + i < mid and mid + j < end):
-        if(left[i] <= right[j]):
-            arr[k] = left[i]
-            i += 1
-        else:
-            arr[k] = right[j]
-            j += 1
-        k += 1
-
-    if start + i < mid:
-        arr[k:end] = left[i:]
-    if mid + j < end:
-        arr[k:end] = right[j:]
-
-
-def timsort(arr):
-    min_run = 32
-    n = len(arr)
-
-    for i in range(0, n, min_run):
-        insertion_sort(arr, i, min((i + min_run - 1), n - 1))
-
-    size = min_run
-    while size < n:
-        for start in range(0, n, size * 2):
-            mid = start + size - 1
-            end = min((start + size * 2 - 1), (n - 1))
-            merge(arr, start, mid, end)
-        size += 2
-
-    return arr
-
-
-a = ['h', 'z', 's', 'y', 'b', 'c', 'd', 'e', 'f', 'g', ]
-print(timsort(a))
+print(requests)
