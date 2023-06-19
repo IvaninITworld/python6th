@@ -92,7 +92,7 @@
 # print(by_letters['c'])
 # # KeyError: 'c'
 
-
+#
 # from collections import defaultdict
 # words = ['apple', 'bat', 'bar', 'atom', 'book']
 # by_letters = defaultdict(list)
@@ -105,6 +105,7 @@
 
 # # 알고리즘 시작
 # # Valid Palindrome
+# #
 # # Input: s = "A man, a plan, a canal: Panama"
 # # Input: s = " "
 # # Input: s = "race a car"
@@ -182,10 +183,11 @@
 #         # The entire stirng was verified and we return the fact that the input string was palendromic
 #         return True
 #
-#
-# # Reverse String
-# # Input: s = ["h","e","l","l","o"]
-# # Input: s = ["H","a","n","n","a","h"]
+
+
+# Reverse String
+# Input: s = ["h","e","l","l","o"]
+# Input: s = ["H","a","n","n","a","h"]
 # class Solution:
 #     def reverseString(self, s: List[str]) -> None:
 #         left, right = 0, len(s) - 1
@@ -575,6 +577,149 @@
 #
 #         return answer
 
-import requests
+# import requests
+#
+# print(requests)
 
-print(requests)
+# Linked List Cycle
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+# class Solution:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         front_pointer = head
+#         back_pointer = head
+#
+#         while front_pointer is not None and front_pointer.next is not None:
+#             back_pointer = back_pointer.next
+#             front_pointer = front_pointer.next.next
+#
+#             if back_pointer == front_pointer:
+#                 return 1
+#         return 0
+#
+#
+# class Solution2:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         # 집합의 중복은 재거하는 특성을 이용한 풀이방법
+#         node_seen = set()
+#
+#         # head 가 나올 때 까지 계속 돌면서
+#         while head is not None:
+#             # head 가 등장 하면
+#             if head in node_seen:
+#                 return True
+#
+#             # 계속 추가해주고
+#             node_seen.add(head)
+#             head = head.next
+#         return False
+#
+# class Solution3:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         if not head or not head.next:
+#             return False
+#
+#         slow = head
+#         fast = head.next
+#
+#         while slow != fast:
+#             if not fast or not fast.next:
+#                 return False
+#             slow = slow.next
+#             fast = fast.next.next
+#
+#         return True
+
+# # 그래프 알고리즘
+# graph = {
+#     'A': ['B', 'C'],
+#     'B': ['A', 'D', 'E'],
+#     'C': ['A', 'F'],
+#     'D': ['B'],
+#     'E': ['B', 'F'],
+#     'F': ['C', 'E']
+# }
+#
+# visited = set() # 방문한 노드를 저장할 집합
+#
+# # DFS (깊이 우선 탐색) - 재귀 함수
+# def dfs_recursive(node):
+#     if node not in visited:
+#         print(node, end=' ')
+#         visited.add(node)
+#         for neighbor in graph[node]:
+#             dfs_recursive(neighbor)
+#
+# # 시작 노드 설정 및 함수 호출
+# start_node = 'A'
+# dfs_recursive(start_node)
+
+# # DFS (깊이 우선 탐색) - 스택 사용
+# def dfs_iterative(start_node):
+#     stack = [start_node]
+#
+#     while stack:
+#         node = stack.pop()
+#         if node not in visited:
+#             print(node, end=' ')
+#             visited.add(node)
+#             stack.extend(reversed(graph[node]))
+#
+# # 시작 노드 설정 및 함수 호출
+# start_node = 'A'
+# dfs_iterative(start_node)
+
+# # BFS (너비 우선 탐색) - 큐를 이용한 반복 구조로 구현
+# from collections import deque
+# def bfs_iterative(start_node):
+#     queue = deque([start_node]) # BFS 큐 초기화
+#
+#     while queue:
+#         node = queue.popleft()
+#         if node not in visited:
+#             print(node, end=' ')
+#             visited.add(node)
+#             queue.extend(graph[node])
+#
+# # 시작 노드 설정 및 함수 호출
+# start_node = 'A'
+# bfs_iterative(start_node)
+
+
+# # BFS : 강사님 코드
+# from collections import deque
+# graph = {
+#     'A': ['B', 'C'],
+#     'B': ['A', 'D', 'E'],
+#     'C': ['A', 'F'],
+#     'D': ['B'],
+#     'E': ['B', 'F'],
+#     'F': ['C', 'E']
+# }
+# visited = set()
+# def bfs_iterative(start_node):
+#     queue = deque([start_node])
+#     while queue:
+#         node = queue.popleft()
+#         if node not in visited:
+#             print(node, end=' ')
+#             visited.add(node)
+#             queue.extend(graph[node])
+# def dfs_iterative(start_node):
+#     stack = [start_node]
+#
+#     while stack:
+#         node = stack.pop()
+#         if node not in visited:
+#             print(node, end=' ')
+#             visited.add(node)
+#             stack.extend(reversed(graph[node]))
+#
+# snode = 'A'
+# dfs_iterative(snode)
+# visited.clear()
+# print('\n-----')
+# bfs_iterative(snode)

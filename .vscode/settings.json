@@ -10,5 +10,6 @@
     "editor.formatOnType": true,
     "editor.formatOnSave": true
   },
-  "isort.args": ["--profile", "black"]
+  "isort.args": ["--profile", "black"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
