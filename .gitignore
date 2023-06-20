@@ -1,6 +1,3 @@
-/venv
-.idea
-idea
-/.idea
-/.vscode
-.pre-commit-config.yaml
+/venv/
+/myproject/db.sqlite3
+/.vscode/

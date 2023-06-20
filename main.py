@@ -3,6 +3,7 @@
 #
 # input_text = "python_basic package practice"
 # handle_text(input_text)
+import collections
 
 
 # 변환된 텍스트: PYTHON_BASIC PACKAGE PRACTICE
@@ -92,7 +93,7 @@
 # print(by_letters['c'])
 # # KeyError: 'c'
 
-#
+
 # from collections import defaultdict
 # words = ['apple', 'bat', 'bar', 'atom', 'book']
 # by_letters = defaultdict(list)
@@ -119,8 +120,8 @@
 #             if strs.pop(0) != strs.pop():
 #                 return False
 #         return True
-#
-#
+
+
 # sol = Solution()
 # print(sol.isPalindrome("A man, a plan, a canal: Panama"))
 # print(sol.isPalindrome(" "))
@@ -227,8 +228,8 @@
 #
 #         letter_logs.sort(key=lambda x: (x.split()[1:], x.split()[0]))
 #         return letter_logs + digit_logs
-#
-#
+
+
 # class Solution2:
 #     def reorderLogFiles(self, logs: List[str]) -> List[str]:
 #         digits = []
@@ -245,8 +246,8 @@
 # def custom_sort(log: str) -> Tuple[str]:
 #     identifier, content = log.split(" ", 1)
 #     return content, identifier
-#
-#
+
+
 # # Most Common Word
 # # Input: paragraph = "a.", banned = []
 # # Input: paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]
@@ -259,12 +260,11 @@
 #         words = [word for word in re.sub(r'[^\w]', ' ', paragraph).lower().split() if word not in banned]
 #         counts = collections.Counter(words)
 #         return counts.most_common(1)[0][0]
-#
-#
+
+
 # #
 # import re
-#
-#
+
 # class Solution2:
 #     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
 #         # convert to lower case and split string into words by spaces and punctuation
@@ -275,9 +275,7 @@
 #
 #         # return value that counted max times in the new list
 #         return max(b, key=b.count)
-#
-#
-# #
+
 # class Solution3:
 #     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
 #         my_dict = defaultdict(int)
@@ -293,9 +291,7 @@
 #                     max_count = my_dict[word]
 #                     max_word = word
 #         return max_word
-#
-#
-# #
+
 # from collections import Counter
 # import re
 #
@@ -324,23 +320,30 @@
 #         return max(counts, key=counts.get)
 #
 #
-# # Group Anagrams
-# # Input: strs = ["eat","tea","tan","ate","nat","bat"]
-# # Input: strs = [""]
-# # Input: strs = ["a"]
+# Group Anagrams
+# Input: strs = ["eat","tea","tan","ate","nat","bat"]
+# Input: strs = [""]
+# Input: strs = ["a"]
 # class Solution:
 #     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
 #         anagrams = {}
 #         for word in strs:
 #             sorted_word = "".join(sorted(word))
+#             print(sorted_word)
+#             # aet
+#             # aet
+#             # ant
+#             # aet
+#             # ant
+#             # abt
 #             if sorted_word in anagrams:
 #                 anagrams[sorted_word].append(word)
 #             else:
 #                 anagrams[sorted_word] = [word]
 #
 #         return anagrams.values()
-#
-#
+#     # [["eat","tea","ate"],["tan","nat"],["bat"]]
+
 # #
 # class Solution2:
 #     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -633,6 +636,7 @@
 #
 #         return True
 
+
 # # 그래프 알고리즘
 # graph = {
 #     'A': ['B', 'C'],
@@ -656,7 +660,7 @@
 # # 시작 노드 설정 및 함수 호출
 # start_node = 'A'
 # dfs_recursive(start_node)
-
+#
 # # DFS (깊이 우선 탐색) - 스택 사용
 # def dfs_iterative(start_node):
 #     stack = [start_node]
@@ -671,7 +675,7 @@
 # # 시작 노드 설정 및 함수 호출
 # start_node = 'A'
 # dfs_iterative(start_node)
-
+#
 # # BFS (너비 우선 탐색) - 큐를 이용한 반복 구조로 구현
 # from collections import deque
 # def bfs_iterative(start_node):
@@ -723,3 +727,228 @@
 # visited.clear()
 # print('\n-----')
 # bfs_iterative(snode)
+
+# 20230620
+# Leetcode
+# Letter Combinations of a Phone Number : DFS??
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+
+        phone = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        def backtrack(combination, next_digits):
+            if len(next_digits) == 0:
+                output.append(combination)
+
+            else:
+                for letter in phone[next_digits[0]]:
+                    backtrack(combination + letter, next_digits[1:])
+
+        output = []
+        backtrack("", digits)
+        return output
+
+
+# 강사님 코드
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        def dfs(index, path):
+            if len(path) == len(digits):
+                result.append(path)
+                return
+            for i in range(index, len(digits)):
+                for j in dic[digits[i]]:
+                    dfs(i + 1, path + j)
+
+        if not digits:
+            return []
+
+        dic = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        result = []
+        dfs(0, "")
+
+        return result
+
+
+# Permutations
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # 결과를 저장할 리스트
+        result = []
+
+        # 주어진 리스트의 순열을 찾는 함수
+        def find_permutations(nums, current_permutation):
+            # 만약 주어진 리스트가 비었다면, 현재의 순열을 결과에 추가
+            if not nums:
+                result.append(current_permutation)
+                return
+
+            # 주어진 리스트의 모든 숫자에 대해 순열 찾기
+            for i in range(len(nums)):
+                # 숫자를 선택하고, 선택하지 않은 숫자들에 대해 순열 찾기
+                remaining_nums = nums[:i] + nums[i + 1:]
+                new_permutation = current_permutation + [nums[i]]
+                find_permutations(remaining_nums, new_permutation)
+
+        # 주어진 숫자들에 대해 순열 찾기 시작
+        find_permutations(nums, [])
+
+        # 결과 반환
+        return result
+
+
+# 강사님 코드
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def dfs(path):
+            if len(path) == len(nums):
+                result.append(path[:])
+                return
+
+            for i in range(len(nums)):
+                if nums[i] in path:
+                    continue
+                dfs(path + [nums[i]])
+
+        result = []
+        dfs([])
+        return result
+
+
+# Reconstruct Itinerary
+from collections import defaultdict
+
+
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        # 그래프를 만들어. 공항을 키로하고 출발과 도착을 값으로 가지는 딕셔너리로
+        # 도착지들은 우선순위 큐로 관리 (lexical)
+        graph = defaultdict(list)
+
+        # reverse 를 써서 뒤집어 두면 나중에 pop()으로 해결 가능
+        for depart, arrive in sorted(tickets, reverse=True):
+            graph[depart].append(arrive)
+
+        route = []
+
+        def dfs(airport):
+            while graph[airport]:
+                dfs(graph[airport].pop())
+            route.append(airport)
+
+        dfs("JFK")
+        return route[::-1]
+
+
+# 강사님 코드
+from collections import defaultdict
+
+
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        graph = defaultdict(list)
+        for a, b in sorted(tickets):
+            graph[a].append(b)
+
+        route = []
+
+        def visit(city):
+            while graph[city]:
+                next_city = graph[city].pop(0)
+                visit(next_city)
+            route.append(city)
+
+        visit("JFK")
+        return route[::-1]
+
+
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        graph = collections.defaultdict(list)
+        for a, b in sorted(tickets):
+            graph[a].append(b)
+
+        route = []
+        stack = ["JFK"]
+
+        while stack:
+            while graph[stack[-1]]:
+                stack.append(graph[stack[-1]].pop(0))
+            route.append(stack.pop())
+
+        return route[::-1]
+
+
+# Network Delay Time : 다익스트라 알고리즘
+import collections
+import heapq
+
+class Solution:
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        # 그래프 구성
+        graph = collections.defaultdict(list)
+        for u, v, w in times:
+            graph[u].append((v, w))
+
+        # 큐 변수: [(소요 시간, 정점)]
+        Q = [(0, k)]
+        dist = collections.defaultdict(int)
+
+        # 우선순위 큐 최소값 기준으로 정점까지 최단 경로 삽입
+        while Q:
+            time, node = heapq.heappop(Q)
+            if node not in dist:
+                dist[node] = time
+                for v, w in graph[node]:
+                    alt = time + w
+                    heapq.heappush(Q, (alt, v))
+
+        # 모든 노드의 최단 경로 존재 여부 판별
+        if len(dist) == n:
+            return max(dist.values())
+        return -1
+
+
+# 강사님 코드
+class Solution:
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        graph = collections.defaultdict(list)
+        for u, v, w in times:
+            graph[u].append((v, w))
+
+        Q = [(0, k)]
+        dist = collections.defaultdict(int)
+
+        while Q:
+            time, node = heapq.heappop(Q)
+            if node not in dist:
+                dist[node] = time
+                for v, w in graph[node]:
+                    alt = time + w
+                    heapq.heappush(Q, (alt, v))
+
+        # 모든 노드의 최단 경로 존재 여부 판별
+        if len(dist) == n:
+            return max(dist.values())
+        return -1
