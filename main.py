@@ -728,227 +728,447 @@ import collections
 # print('\n-----')
 # bfs_iterative(snode)
 
-# 20230620
-# Leetcode
-# Letter Combinations of a Phone Number : DFS??
+# # 20230620
+# # Leetcode
+# # Letter Combinations of a Phone Number : DFS??
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         if not digits:
+#             return []
+#
+#         phone = {
+#             "2": "abc",
+#             "3": "def",
+#             "4": "ghi",
+#             "5": "jkl",
+#             "6": "mno",
+#             "7": "pqrs",
+#             "8": "tuv",
+#             "9": "wxyz"
+#         }
+#
+#         def backtrack(combination, next_digits):
+#             if len(next_digits) == 0:
+#                 output.append(combination)
+#
+#             else:
+#                 for letter in phone[next_digits[0]]:
+#                     backtrack(combination + letter, next_digits[1:])
+#
+#         output = []
+#         backtrack("", digits)
+#         return output
+#
+#
+# # 강사님 코드
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         def dfs(index, path):
+#             if len(path) == len(digits):
+#                 result.append(path)
+#                 return
+#             for i in range(index, len(digits)):
+#                 for j in dic[digits[i]]:
+#                     dfs(i + 1, path + j)
+#
+#         if not digits:
+#             return []
+#
+#         dic = {
+#             "2": "abc",
+#             "3": "def",
+#             "4": "ghi",
+#             "5": "jkl",
+#             "6": "mno",
+#             "7": "pqrs",
+#             "8": "tuv",
+#             "9": "wxyz"
+#         }
+#
+#         result = []
+#         dfs(0, "")
+#
+#         return result
+#
+#
+# # Permutations
+# class Solution:
+#     def permute(self, nums: List[int]) -> List[List[int]]:
+#         # 결과를 저장할 리스트
+#         result = []
+#
+#         # 주어진 리스트의 순열을 찾는 함수
+#         def find_permutations(nums, current_permutation):
+#             # 만약 주어진 리스트가 비었다면, 현재의 순열을 결과에 추가
+#             if not nums:
+#                 result.append(current_permutation)
+#                 return
+#
+#             # 주어진 리스트의 모든 숫자에 대해 순열 찾기
+#             for i in range(len(nums)):
+#                 # 숫자를 선택하고, 선택하지 않은 숫자들에 대해 순열 찾기
+#                 remaining_nums = nums[:i] + nums[i + 1:]
+#                 new_permutation = current_permutation + [nums[i]]
+#                 find_permutations(remaining_nums, new_permutation)
+#
+#         # 주어진 숫자들에 대해 순열 찾기 시작
+#         find_permutations(nums, [])
+#
+#         # 결과 반환
+#         return result
+#
+#
+# # 강사님 코드
+# class Solution:
+#     def permute(self, nums: List[int]) -> List[List[int]]:
+#         def dfs(path):
+#             if len(path) == len(nums):
+#                 result.append(path[:])
+#                 return
+#
+#             for i in range(len(nums)):
+#                 if nums[i] in path:
+#                     continue
+#                 dfs(path + [nums[i]])
+#
+#         result = []
+#         dfs([])
+#         return result
+#
+#
+# # Reconstruct Itinerary
+# from collections import defaultdict
+#
+#
+# class Solution:
+#     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+#         # 그래프를 만들어. 공항을 키로하고 출발과 도착을 값으로 가지는 딕셔너리로
+#         # 도착지들은 우선순위 큐로 관리 (lexical)
+#         graph = defaultdict(list)
+#
+#         # reverse 를 써서 뒤집어 두면 나중에 pop()으로 해결 가능
+#         for depart, arrive in sorted(tickets, reverse=True):
+#             graph[depart].append(arrive)
+#
+#         route = []
+#
+#         def dfs(airport):
+#             while graph[airport]:
+#                 dfs(graph[airport].pop())
+#             route.append(airport)
+#
+#         dfs("JFK")
+#         return route[::-1]
+#
+#
+# # 강사님 코드
+# from collections import defaultdict
+#
+#
+# class Solution:
+#     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+#         graph = defaultdict(list)
+#         for a, b in sorted(tickets):
+#             graph[a].append(b)
+#
+#         route = []
+#
+#         def visit(city):
+#             while graph[city]:
+#                 next_city = graph[city].pop(0)
+#                 visit(next_city)
+#             route.append(city)
+#
+#         visit("JFK")
+#         return route[::-1]
+#
+#
+# class Solution:
+#     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+#         graph = collections.defaultdict(list)
+#         for a, b in sorted(tickets):
+#             graph[a].append(b)
+#
+#         route = []
+#         stack = ["JFK"]
+#
+#         while stack:
+#             while graph[stack[-1]]:
+#                 stack.append(graph[stack[-1]].pop(0))
+#             route.append(stack.pop())
+#
+#         return route[::-1]
+#
+#
+# # Network Delay Time : 다익스트라 알고리즘
+# import collections
+# import heapq
+#
+# class Solution:
+#     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+#         # 그래프 구성
+#         graph = collections.defaultdict(list)
+#         for u, v, w in times:
+#             graph[u].append((v, w))
+#
+#         # 큐 변수: [(소요 시간, 정점)]
+#         Q = [(0, k)]
+#         dist = collections.defaultdict(int)
+#
+#         # 우선순위 큐 최소값 기준으로 정점까지 최단 경로 삽입
+#         while Q:
+#             time, node = heapq.heappop(Q)
+#             if node not in dist:
+#                 dist[node] = time
+#                 for v, w in graph[node]:
+#                     alt = time + w
+#                     heapq.heappush(Q, (alt, v))
+#
+#         # 모든 노드의 최단 경로 존재 여부 판별
+#         if len(dist) == n:
+#             return max(dist.values())
+#         return -1
+#
+#
+# # 강사님 코드
+# class Solution:
+#     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+#         graph = collections.defaultdict(list)
+#         for u, v, w in times:
+#             graph[u].append((v, w))
+#
+#         Q = [(0, k)]
+#         dist = collections.defaultdict(int)
+#
+#         while Q:
+#             time, node = heapq.heappop(Q)
+#             if node not in dist:
+#                 dist[node] = time
+#                 for v, w in graph[node]:
+#                     alt = time + w
+#                     heapq.heappush(Q, (alt, v))
+#
+#         # 모든 노드의 최단 경로 존재 여부 판별
+#         if len(dist) == n:
+#             return max(dist.values())
+#         return -1
+
+
+# 20230621 : 오전 알고리즘 수업
+# leetcode : Maximum Depth of Binary Tree - 트리
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        if not digits:
-            return []
-
-        phone = {
-            "2": "abc",
-            "3": "def",
-            "4": "ghi",
-            "5": "jkl",
-            "6": "mno",
-            "7": "pqrs",
-            "8": "tuv",
-            "9": "wxyz"
-        }
-
-        def backtrack(combination, next_digits):
-            if len(next_digits) == 0:
-                output.append(combination)
-
-            else:
-                for letter in phone[next_digits[0]]:
-                    backtrack(combination + letter, next_digits[1:])
-
-        output = []
-        backtrack("", digits)
-        return output
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        # 가장 먼저 입력값이 없으면 (항상 예외 처리를 먼저 신경쓰자)
+        if root is None:
+            return 0
+        else:
+            left_height = self.maxDepth(root.left)
+            right_height = self.maxDepth(root.right)
+            return max(left_height, right_height) + 1
 
 
 # 강사님 코드
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        def dfs(index, path):
-            if len(path) == len(digits):
-                result.append(path)
-                return
-            for i in range(index, len(digits)):
-                for j in dic[digits[i]]:
-                    dfs(i + 1, path + j)
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        queue = collections.deque([root])
+        depth = 0
 
-        if not digits:
-            return []
-
-        dic = {
-            "2": "abc",
-            "3": "def",
-            "4": "ghi",
-            "5": "jkl",
-            "6": "mno",
-            "7": "pqrs",
-            "8": "tuv",
-            "9": "wxyz"
-        }
-
-        result = []
-        dfs(0, "")
-
-        return result
+        while queue:
+            depth += 1
+            for _ in range(len(queue)):
+                current_root = queue.popleft()
+                if current_root.left:
+                    queue.append(current_root.left)
+                if current_root.right:
+                    queue.append(current_root.right)
+        return depth
 
 
-# Permutations
+# leetcode : Longest Univalue Path
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        # 결과를 저장할 리스트
-        result = []
+    def longestUnivaluePath(self, root: Optional[TreeNode]) -> int:
+        self.ans = 0
 
-        # 주어진 리스트의 순열을 찾는 함수
-        def find_permutations(nums, current_permutation):
-            # 만약 주어진 리스트가 비었다면, 현재의 순열을 결과에 추가
-            if not nums:
-                result.append(current_permutation)
-                return
+        def arrow_length(node):
+            if not node:
+                return 0
 
-            # 주어진 리스트의 모든 숫자에 대해 순열 찾기
-            for i in range(len(nums)):
-                # 숫자를 선택하고, 선택하지 않은 숫자들에 대해 순열 찾기
-                remaining_nums = nums[:i] + nums[i + 1:]
-                new_permutation = current_permutation + [nums[i]]
-                find_permutations(remaining_nums, new_permutation)
+            left_length = arrow_length((node.left))
+            right_length = arrow_length(node.right)
+            left_arrow = right_arrow = 0
 
-        # 주어진 숫자들에 대해 순열 찾기 시작
-        find_permutations(nums, [])
+            if node.left and node.left.val == node.val:
+                left_arrow = left_length + 1
 
-        # 결과 반환
-        return result
+            if node.right and node.right.val == node.val:
+                right_arrow = right_length + 1
+
+            self.ans = max(self.ans, left_arrow + right_arrow)
+            return max(left_arrow, right_arrow)
+
+        arrow_length(root)
+        return self.ans
 
 
 # 강사님 코드
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        def dfs(path):
-            if len(path) == len(nums):
-                result.append(path[:])
-                return
+    def longestUnivaluePath(self, root: Optional[TreeNode]) -> int:
+        self.longest_path = 0
 
-            for i in range(len(nums)):
-                if nums[i] in path:
-                    continue
-                dfs(path + [nums[i]])
+        def dfs(node):
+            if not node:
+                return 0
 
-        result = []
-        dfs([])
-        return result
+            left_length = dfs(node.left)
+            right_length = dfs(node.right)
+
+            left_arrow = right_arrow = 0
+
+            if node.left and node.left.val == node.val:
+                left_arrow = left_length + 1
+            if node.right and node.right.val == node.val:
+                right_arrow = right_length + 1
+
+            self.longest_path = max(self.longest_path, left_arrow + right_arrow)
+
+            return max(left_arrow, right_arrow)
+
+        dfs(root)
+        return self.longest_path
 
 
-# Reconstruct Itinerary
-from collections import defaultdict
-
-
+# leetcode : Balanced Binary Tree
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        # 그래프를 만들어. 공항을 키로하고 출발과 도착을 값으로 가지는 딕셔너리로
-        # 도착지들은 우선순위 큐로 관리 (lexical)
-        graph = defaultdict(list)
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def check(root):
+            if root is None:
+                return 0
 
-        # reverse 를 써서 뒤집어 두면 나중에 pop()으로 해결 가능
-        for depart, arrive in sorted(tickets, reverse=True):
-            graph[depart].append(arrive)
+            left = check(root.left)
+            right = check(root.right)
 
-        route = []
+            if left == -1 or right == -1 or abs(left - right) > 1:
+                return -1
 
-        def dfs(airport):
-            while graph[airport]:
-                dfs(graph[airport].pop())
-            route.append(airport)
+            return max(left, right) + 1
 
-        dfs("JFK")
-        return route[::-1]
-
+        return check(root) != -1
 
 # 강사님 코드
-from collections import defaultdict
-
-
 class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        graph = defaultdict(list)
-        for a, b in sorted(tickets):
-            graph[a].append(b)
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def check_height(node):
+            if not node:
+                return 0
 
-        route = []
+            left_height = check_height(node.left)
+            right_height = check_height(node.right)
 
-        def visit(city):
-            while graph[city]:
-                next_city = graph[city].pop(0)
-                visit(next_city)
-            route.append(city)
+            if left_height == -1 or right_height == -1 or abs(left_height - right_height) > 1:
+                return -1
 
-        visit("JFK")
-        return route[::-1]
+            return max(left_height, right_height) + 1
+
+        return check_height(root) != -1
 
 
+# leetcode : Minimum Height Trees
 class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n <= 1:
+            return [0]
+
         graph = collections.defaultdict(list)
-        for a, b in sorted(tickets):
-            graph[a].append(b)
+        for i, j in edges:
+            graph[i].append(j)
+            graph[j].append(i)
 
-        route = []
-        stack = ["JFK"]
+        leaves = []
+        for i in range(n + 1):
+            if len(graph[i]) == 1:
+                leaves.append(i)
 
-        while stack:
-            while graph[stack[-1]]:
-                stack.append(graph[stack[-1]].pop(0))
-            route.append(stack.pop())
+        while n > 2:
+            n -= len(leaves)
+            new_leaves = []
 
-        return route[::-1]
+            for leaf in leaves:
+                neighbor = graph[leaf].pop()
+                graph[neighbor].remove(leaf)
+
+                if len(graph[neighbor]) == 1:
+                    new_leaves.append(neighbor)
+
+            leaves = new_leaves
+
+        return leaves
 
 
-# Network Delay Time : 다익스트라 알고리즘
-import collections
-import heapq
-
+# leetcode : Range Sum of BST
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        # 그래프 구성
-        graph = collections.defaultdict(list)
-        for u, v, w in times:
-            graph[u].append((v, w))
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        def dfs(node):
+            if not node:
+                return 0
 
-        # 큐 변수: [(소요 시간, 정점)]
-        Q = [(0, k)]
-        dist = collections.defaultdict(int)
+            if low <= node.val <= high:
+                self.total += node.val
 
-        # 우선순위 큐 최소값 기준으로 정점까지 최단 경로 삽입
-        while Q:
-            time, node = heapq.heappop(Q)
-            if node not in dist:
-                dist[node] = time
-                for v, w in graph[node]:
-                    alt = time + w
-                    heapq.heappush(Q, (alt, v))
+            if low < node.val:
+                dfs(node.left)
 
-        # 모든 노드의 최단 경로 존재 여부 판별
-        if len(dist) == n:
-            return max(dist.values())
-        return -1
+            if node.val < high:
+                dfs(node.right)
+
+        self.total = 0
+        dfs(root)
+        return self.total
 
 
 # 강사님 코드
 class Solution:
-    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        graph = collections.defaultdict(list)
-        for u, v, w in times:
-            graph[u].append((v, w))
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        self.answer = 0
 
-        Q = [(0, k)]
-        dist = collections.defaultdict(int)
+        # node 트리 탐색 하겠다!
+        def dfs(node):
+            if not node:
+                return 0
 
-        while Q:
-            time, node = heapq.heappop(Q)
-            if node not in dist:
-                dist[node] = time
-                for v, w in graph[node]:
-                    alt = time + w
-                    heapq.heappush(Q, (alt, v))
+            if low <= node.val <= high:
+                self.answer += node.val
 
-        # 모든 노드의 최단 경로 존재 여부 판별
-        if len(dist) == n:
-            return max(dist.values())
-        return -1
+            if low < node.val:
+                dfs(node.left)
+            if high > node.val:
+                dfs(node.right)
+
+        dfs(root)
+        return self.answer
