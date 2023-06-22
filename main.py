@@ -1172,3 +1172,23 @@ class Solution:
 
         dfs(root)
         return self.answer
+
+
+# leetcode : Kth Largest Element in an Array
+import heapq
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        # 힙으로 만들기 위해 빈 배열
+        heap = []
+
+        # 루프를 돌면서
+        for num in nums:
+            # -를 붙여서 순서를 뒤집자, 힙은 최소 힙으로 정렬되기 때문에 음수로 하게 되면 최대수가 맨앞으로!
+            heapq.heappush(heap, -num)
+
+        # k 번째 큰 수를 출력해야하니, k-1 만큼 루프를 돌면서 다 버려주고
+        for _ in range(k-1):
+            heapq.heappop(heap)
+
+        # 마지막에 k 번째 출력
+        return -heapq.heappop(heap)
