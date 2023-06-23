@@ -12,11 +12,13 @@
 <body>
 <div id="sidebar">
     {% block sidebar %}
-    <ul>
-        <li><a href="/">Project_Home</a></li>
-        <li><a href="/admin">Admin</a></li>
-        <li><a href="/polls">Polls</a></li>
-    </ul>
+        <ul>
+            <li><a href="/">Project_Home</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/polls">Polls</a></li>
+{#            {% if not url=="/books" %}#}
+            <li><a href="/books">Books</a></li>
+        </ul>
     {% endblock sidebar %}
 </div>
 <div id="content">

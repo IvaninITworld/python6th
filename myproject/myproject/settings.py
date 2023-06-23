@@ -122,24 +122,61 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Django 에서 로거를 설정하는 방법의 예
+# # Django 에서 로거를 설정하는 방법의 예
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "formatters": {
+#         "verbose": {
+#             "format": "[%(asctime)s] [%(levelname)s] [%(name)s:%(lineno)s] %(message)s",
+#             "datefmt": "%d/%b/%Y %H:%M:%S"
+#         },
+#     },
+#     "handlers": {
+#         "file": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "filename": BASE_DIR / "logs" / "development.log",
+#             "formatter": "verbos",
+#         },
+#         "console": {
+#             "class": "logging.StreamHandler",
+#             "formatter": "verbose"
+#         },
+#     },
+#     "loggers": {
+#         "polls": {
+#             "handlers": ["file"],
+#             "level": "DEBUG",
+#         }
+#     },
+#     "root": {
+#         "level": "INFO",
+#         "handlers": ["console"]
+#     }
+# }
+
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "[%(asctime)s] [%(levelname)s] %(message)s",
-            "datefmt": "%d/%b/%Y %H:%M:%S"
-        }
-    },
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "verbose"
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
         },
     },
-    "root": {
-        "level": "INFO",
-        "handlers": ["console"]
-    }
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'development.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'polls': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    },
 }

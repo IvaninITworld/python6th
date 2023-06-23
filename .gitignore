@@ -1,3 +1,7 @@
 /venv/
 /myproject/db.sqlite3
 /.vscode/
+*.log
+/python_basic/list_example.txt
+/python_basic/new_example.txt
+.idea
