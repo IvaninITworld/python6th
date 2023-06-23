@@ -20,19 +20,23 @@ class IndexView(generic.ListView):
 
 
 # Create your views here.
-def index(request): # class IndexView(generic.ListView): 와 같은 내용!
-    latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
-    context = {'latest_question_list': latest_question_list, "value": "Hello,\nWorld!",
-               "value2": "동해물과 백두산이 마르고 닳도록",
-               "value3": [1, 2, 3],
-               "value4": False,
-               "value5": "<strong>Hello, World!</strong>"}
-    return render(request, 'polls/index.html', context)
+# def index(request): # class IndexView(generic.ListView): 와 같은 내용!
+#     latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
+#     context = {'latest_question_list': latest_question_list, "value": "Hello,\nWorld!",
+#                "value2": "동해물과 백두산이 마르고 닳도록",
+#                "value3": [1, 2, 3],
+#                "value4": False,
+#                "value5": "<strong>Hello, World!</strong>"}
+#     return render(request, 'polls/index.html', context)
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = "polls/detail.html"
 
 
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/detail.html', {'question': question})
+# def detail(request, question_id): # class DetailView(generic.DetailView): 와 같은 내용!
+#     question = get_object_or_404(Question, pk=question_id)
+#     return render(request, 'polls/detail.html', {'question': question})
 
 
 def vote(request, question_id):
@@ -52,6 +56,10 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
+class ResultView(generic.DetailView):
+    model = Question
+    template_name = "polls/results.html"
+
+# def results(request, question_id): # class ResultView(generic.DetailView): 와 같은 내용!
+#     question = get_object_or_404(Question, pk=question_id)
+#     return render(request, 'polls/results.html', {'question': question})
