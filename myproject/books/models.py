@@ -8,7 +8,6 @@ class Book(models.Model):
     publisher = models.ForeignKey("Publisher", on_delete=models.CASCADE)
     publication_date = models.DateField()
 
-    # CASCADE 를 사용하려고 하면 자동완성으로 () 가 붙는데 사용하지 않는 이유는 뭘까 ?
     def __str__(self):
         return self.title
 
