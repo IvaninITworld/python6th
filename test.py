@@ -55,19 +55,23 @@
 # # 4 121
 # # 5 23
 
-print(5 / 3)
-print(5 // 3)
-print(type(5 // 3))
-print(type(5 / 3))
-# 1.6666666666666667
-# 1
-# <class 'int'>
-# <class 'float'>
+# print(5 / 3)
+# print(5 // 3)
+# print(type(5 // 3))
+# print(type(5 / 3))
+# # 1.6666666666666667
+# # 1
+# # <class 'int'>
+# # <class 'float'>
+#
+# # 나머지만 구하는 연산자
+# print(5 % 3)
+# # 2
+#
+# # 몫과 나머지를 한 번에 구하는 연산자
+# print(divmod(5, 3))
+# # (1, 2)
 
-# 나머지만 구하는 연산자
-print(5 % 3)
-# 2
-
-# 몫과 나머지를 한 번에 구하는 연산자
-print(divmod(5, 3))
-# (1, 2)
+class Solution:
+    def isValid(self, s: str) -> bool:
+        pass
